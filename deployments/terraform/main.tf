@@ -41,6 +41,7 @@ resource "random_integer" "foo" {
 
 resource "random_pet" "bar" {
   length = random_integer.foo.result
+  prefix = "helloworld"
 }
 
 output "name" {
