@@ -13,9 +13,9 @@ jobs:
   plan:
     runs-on: ubuntu-latest
     name: Apply terraform plan
-    strategy: 
+    strategy:
       matrix:
-        env: ["dev", "prod"]
+        env: [ "dev", "prod" ]
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -32,3 +32,4 @@ jobs:
           label: ${{ matrix.env }}
           var_file: |
             envs/${{ matrix.env }}/terraform.tfvars
+          workspace: ${{ matrix.env }}
