@@ -10,6 +10,9 @@ permissions:
 jobs:
   plan:
     runs-on: ubuntu-latest
+    strategy:
+      matrix: 
+        env: [prod, dev]
     name: Create a plan for an example terraform configuration
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -24,4 +27,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         with:
           path: deployments/terraform
-          
+          label: ${{ matrix.env }}
+          var_file: |
+            envs/${{ matrix.env }}/terraform.tfvars
