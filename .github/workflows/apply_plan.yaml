@@ -29,5 +29,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         with:
           path: deployments/terraform
+          label: ${{ matrix.env }}
           var_file: |
             envs/${{ matrix.env }}/terraform.tfvars
